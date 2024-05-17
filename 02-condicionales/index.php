@@ -153,19 +153,54 @@ else{
   echo "entras a Divisiones menores";
 }
 
-$favcolor = "red";
+echo "<br>";
+echo "<br>";
 
-switch ($favcolor) {
-  case "red":
-    echo "Your favorite color is red!";
+$amarillo = "amarillo";
+$verde = "verde";
+$naranja = "naranja";
+$rojo = "rojo";
+$marron = "marron";
+$purpura = "purpura";
+
+
+switch ($verde) {
+  case "verde":
+    echo "aire bueno";
     break;
-  case "blue":
-    echo "Your favorite color is blue!";
+ }
+
+ echo "<br>";
+
+    switch ($amarillo) {
+  case "amarillo":
+    echo "aire mas o menos";
     break;
-  case "green":
-    echo "Your favorite color is green!";
+ }
+ echo "<br>";
+ 
+ switch ($naranja) {
+  case "naranja":
+    echo "No es saludable para gente sensible";
     break;
-  default:
-    echo "Your favorite color is neither red, blue, nor green!";
-}
+ }
+ echo "<br>";
+ switch ($rojo) {
+  case "rojo":
+    echo "no es saludable";
+    break;
+ }
+ echo "<br>";
+ switch ($purpura) {
+  case "purpura":  
+    echo "muy poca saludable";
+    break;
+ }
+ echo "<br>";
+ switch ($marron) {
+  case "marron":  
+    echo "peligroso";
+    break;
+     }
+
 ?>
