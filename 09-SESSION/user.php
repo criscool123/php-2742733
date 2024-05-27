@@ -14,20 +14,20 @@ session_start();
 </head>
 
 <body>
-    <?php if ($_SESSION) ?>
+    <?php if (isset($_SESSION["UserRegister"])) : ?>
 
-    <h1>Bienvenido <?php echo $_SESSION["nombre"] ?> <br> a tu Pais
-        <?php echo $_SESSION["pais"] ?></h1>
-    <a href="./cerrar.php">Cerrar Sesion</a>
-    <a href="./index.php">Home</a>
+        <h1>Bienvenido <?php echo $_SESSION["UserRegister"]; ?> </h1>
+        <a href="./cerrar.php">Cerrar Sesion</a>
+        <a href="./index.php">Home</a>
 
-<?php  "else"   ?>
+        <?php "else" ?>  
 
-<h1>No has iniciado sesion</h1>
-<a href="./index.php">Iniciar Sesion</a>
+        <h1>No has iniciado sesion</h1>
+        <a href="./index.php">Iniciar Sesion</a>
 
 
-<?php "endif"  ?>
+    <?php endif  ?>
 
 </body>
+
 </html>

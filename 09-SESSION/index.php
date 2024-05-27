@@ -1,9 +1,27 @@
 <?php
 
-/* session_start();
+session_start();
 
-$_SESSION["nombre"]="juan";
-$_SESSION["pais"]="Colombia"; */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Usuario = $_POST["Usuario"];
+    $Contraseña = $_POST["Contraseña"];
+
+    $User_Register = isset($_SESSION["userRegister"]) ? $_SESSION ["userRegister"] : null;
+    $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION ["passRegister"] : null;
+
+    if (empty($Usuario) or empty($Contraseña)) {
+        echo "Por Favor Registrece";
+    } else {
+
+        echo $Usuario . "-" . $Contraseña;
+        if ($Usuario == $User_Register && $Contraseña == $Pass_Register) {
+            echo "Listo ya Iniciaste Sesion";
+        }
+
+    }
+
+}
+
 
 ?>
 
@@ -18,23 +36,22 @@ $_SESSION["pais"]="Colombia"; */
 
 <body>
 
-    <h1>Pagina de Inicio</h1>
+    <h1>Iniciar Sesion</h1>
 
 
 
-    <form action="./registro.php" method="POST">
+    <form action="index.php" method="POST">
         <label for="Usuario">Usuario</label>
         <input type="text" placeholder="Usuario" name="Usuario">
         <br>
         <label for="Contraseña">Contraseña</label>
         <input type="text" placeholder="Contraseña" name="Contraseña">
         <br>
-        <button type="submit" value="submit">Registrar</button>
+        <button type="submit" value="submit">Iniciar Sesion</button>
     </form>
 
 
-    <a href="./user.php">User</a>
-    <a href="./cerrar.php">Cerrar</a>
+    <a href="./registro.php">Resgistrate</a>
 
 
 </body>
