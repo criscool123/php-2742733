@@ -6,20 +6,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Usuario = $_POST["Usuario"];
     $Contraseña = $_POST["Contraseña"];
 
-    $User_Register = isset($_SESSION["userRegister"]) ? $_SESSION ["userRegister"] : null;
-    $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION ["passRegister"] : null;
+    $User_Register = isset($_SESSION["userRegister"]) ? $_SESSION["userRegister"] : null;
+    $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION["passRegister"] : null;
 
-    if (empty($Usuario) or empty($Contraseña)) {
-        echo "Por Favor Registrece";
-    } else {
-
-        echo $Usuario . "-" . $Contraseña;
-        if ($Usuario == $User_Register && $Contraseña == $Pass_Register) {
-            echo "Listo ya Iniciaste Sesion";
-        }
-
+    try {
+        $conexion = new PDO("mysql: host=localhost; dbname=focaapp", "root", "");
+        echo "Conexion Ok";
+    } catch (PDOException $e) {
+        echo "Error;" . $e->getMessage();
     }
 
+    $statement = $conexion->prepare("SELECT * FROM `userapp` WHERE usuario");
+
+    $statement->execute(array(':Usuario' => $Usuario, ':Contraseña' => $Contraseña));
+
+    $result = $statement->fetch();
+    if ($result) {
+        echo `true`;
+        $_SESSION["userRegister"] = $Usuario;
+        $_SESSION["PassRegister"] = $Contraseña;
+
+        header(`Location: user.php`);
+    }
 }
 
 

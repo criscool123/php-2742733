@@ -8,17 +8,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Contraseña = $_POST["Contraseña"];
 
     if (empty($Usuario) or empty($Contraseña)) {
-        echo "Por Favor Registrece";
+        echo "Por Favor Regístrese";
     } else {
-        /*   echo $Usuario . "-" . $Contraseña; */
 
         $_SESSION["userRegister"] = $Usuario;
         $_SESSION["PassRegister"] = $Contraseña;
-        /*  echo "Variables de sesion guardadas";
-        header("") */
+
+        try {
+            $conexion = new PDO("mysql:host=localhost;dbname=focaapp", "root", "");
+            echo "Conexion Ok";
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        $statement = $conexion->prepare("INSERT INTO `userapp`(`ID`, `Usuario`, `Contraseña`, `nombre`) VALUES (NULL, :Usuario, :Contraseña, '')");
+
+        $statement->execute(array(':Usuario' => $Usuario, ':Contraseña' => $Contraseña));
+
+        echo "Datos enviados";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Datos registrados ya puede iniciar sesion</p>
         <a href="./index.php">Iniciar Sesion</a>
 
-        <p> <?php echo $_SESSION["userRegister"]. " - " .  $_SESSION["PassRegister"]; ?> </p>
+        <p> <?php echo $_SESSION["userRegister"] . " - " .  $_SESSION["PassRegister"]; ?> </p>
     <?php endif ?>
 
 </body>
