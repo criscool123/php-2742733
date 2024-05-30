@@ -1,3 +1,5 @@
+
+
 <?php
 
 session_start();
@@ -10,26 +12,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION["passRegister"] : null;
 
     try {
-        $conexion = new PDO("mysql: host=localhost; dbname=focaapp", "root", "");
+        $conexion = new PDO("mysql:host=localhost;dbname=focaapp", "root", "");
         echo "Conexion Ok";
     } catch (PDOException $e) {
-        echo "Error;" . $e->getMessage();
+        echo "Error: " . $e->getMessage();
+        exit(); 
     }
 
-    $statement = $conexion->prepare("SELECT * FROM `userapp` WHERE usuario");
+    $statement = $conexion->prepare("SELECT * FROM `usersapp` WHERE Usuario = :Usuario AND Contraseña = :Contraseña");
 
-    $statement->execute(array(':Usuario' => $Usuario, ':Contraseña' => $Contraseña));
+
+    try {
+        $statement->execute(array(':Usuario' => $Usuario, ':Contraseña' => $Contraseña));
+    } catch (PDOException $e) {
+        echo "Error al ejecutar la consulta: " . $e->getMessage();
+        exit(); 
+    }
 
     $result = $statement->fetch();
+
     if ($result) {
-        echo `true`;
+        echo "true";
         $_SESSION["userRegister"] = $Usuario;
         $_SESSION["PassRegister"] = $Contraseña;
-
-        header(`Location: user.php`);
-    }
+        header("Location: user.php");
+        exit();
+    } 
 }
-
 
 ?>
 

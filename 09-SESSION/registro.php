@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         $_SESSION["userRegister"] = $Usuario;
-        $_SESSION["PassRegister"] = $Contraseña;
+        $_SESSION["PassRegister"] = $Contraseña; 
+        header('Location: index.php');
 
         try {
             $conexion = new PDO("mysql:host=localhost;dbname=focaapp", "root", "");
