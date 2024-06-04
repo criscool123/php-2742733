@@ -50,7 +50,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             height: 32rem;
             margin: 2rem;
             border-radius: 5rem;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url(./banner.jpg);
         }
+
+        .enviar {
+            justify-content: center;
+            border-radius: 2rem;
+          background-color: purple;
+          color: white;
+          background-image: url(./pic05.jpg);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        body{
+            background-color: plum;
+        }
+        
+      
     </style>
 
 
@@ -64,27 +91,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 
-    <div class="container md-4 col-3">
-<h1>Iniciar Sesion</h1>
+    <div class="container md-4 col-3 ">
+
+        <h1>Iniciar Sesion</h1>
 
 
 
-    <form action="index.php" method="POST">
-        <label for="Usuario"></label>
-        <input type="text" placeholder="Usuario" name="Usuario">
-        <br>
-        <label for="Contraseña"></label>
-        <input type="text" placeholder="Contraseña" name="Contraseña">
-        <br>
-        <button type="submit" value="submit">Iniciar Sesion</button>
-    </form>
+        <form action="index.php" method="POST">
+            <label for="Usuario"></label>
+            <input type="text" placeholder="Usuario" name="Usuario">
+            <br>
+            <label for="Contraseña"></label>
+            <input type="text" placeholder="Contraseña" name="Contraseña">
+            <br>
+
+            <button class="enviar" type="submit" value="submit">Iniciar Sesion</button>
+
+        </form>
 
 
-    <a href="./registro.php">Registrate</a>
+        <a href="./registro.php">Registrate</a>
     </div>
 
 
-    
+
 
 
 </body>

@@ -46,8 +46,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       height: 32rem;
       margin: 2rem;
       border-radius: 5rem;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url(./banner.jpg);
     }
+
+    .enviar {
+            justify-content: center;
+            border-radius: 2rem;
+          background-color: purple;
+          color: white;
+          background-image: url(./pic05.jpg);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        body{
+            background-color: plum;
+        }
+        
   </style>
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -65,24 +92,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>Registrate</h1>
 
-    <form action="registro.php" method="POST">
 
-      <label for="Nombre"></label>
-      <input type="text" placeholder="Nombre" name="Nombre">
-      <br>
+ 
+      <form action="registro.php" method="POST">
 
-      <label for="Usuario"></label>
-      <input type="text" placeholder="Usuario" name="Usuario">
-      <br>
-      <label for="Contraseña"></label>
-      <input type="text" placeholder="Contraseña" name="Contraseña">
-      <br>
-      <label for="Contraseña"></label>
-      <input type="text" placeholder="Confirmar Contraseña" name="Contraseña">
-      <br>
-      <button type="submit" value="submit">Registrase</button>
-    </form>
+        <label for="Nombre"></label>
+        <input type="text" placeholder="Nombre" name="Nombre">
+        <br>
 
+        <label for="Usuario"></label>
+        <input type="text" placeholder="Usuario" name="Usuario">
+        <br>
+        <label for="Contraseña"></label>
+        <input type="text" placeholder="Contraseña" name="Contraseña">
+        <br>
+        <label for="Contraseña"></label>
+        <input type="text" placeholder="Confirmar Contraseña" name="Contraseña">
+        <br>
+
+
+        <button class="enviar" type="submit" value="submit">Registrase</button>
+
+
+      </form>
+
+    
 
 
 
