@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+header("Location: index.php");
 
 ?>
 
@@ -24,6 +25,7 @@ session_start();
 
         <h1>No has iniciado sesión</h1>
         <a href="./index.php">Iniciar sesión</a>
+        
 
     <?php endif ?>
 

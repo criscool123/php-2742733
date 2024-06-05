@@ -1,40 +1,3 @@
-<?php
-
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Usuario = $_POST["Usuario"];
-    $Contraseña = $_POST["Contraseña"];
-
-
-
-    $User_Register = isset($_SESSION["userRegister"]) ? $_SESSION["userRegister"] : null;
-    $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION["passRegister"] : null;
-
-    try {
-        $conexion = new PDO("mysql: host=localhost; dbname=focaapp", 'root', '');
-        echo "Conexión OK";
-    } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-    $statement = $conexion->prepare("SELECT * FROM `userapp` WHERE Usuario = :user AND Contraseña = :pass");
-
-    $statement->execute(array(':user' => $Usuario, ':pass' => $Contraseña));
-
-    $result = $statement->fetch();
-
-    if ($result) {
-        echo "true";
-        $_SESSION["userRegister"] = $Usuario;
-        $_SESSION["PassRegister"] = $Contraseña;
-        header("Location: user.php");
-    } else {
-        echo 'false';
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,15 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: url(./banner.jpg);
+            background-image: url(./pic04.jpg);
+            background-size: 70rem;
+          
         }
 
         .enviar {
             justify-content: center;
             border-radius: 2rem;
-          background-color: purple;
-          color: white;
-          background-image: url(./pic05.jpg);
+            background-color: purple;
+            color: white;
+            background-image: url(./pic05.jpg);
         }
 
         form {
@@ -73,11 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 10px;
         }
 
-        body{
-            background-color: plum;
-        }
-        
-      
     </style>
 
 
@@ -88,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 
-<body>
+<body style=" background-color: plum; background-image: url(./banner.jpg);" >
 
 
     <div class="container md-4 col-3 ">
@@ -111,11 +71,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <a href="./registro.php">Registrate</a>
+        <a href="./user.php"></a>
+
+        <?php
+
+        session_start();
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $Usuario = $_POST["Usuario"];
+            $Contraseña = $_POST["Contraseña"];
+
+            $User_Register = isset($_SESSION["userRegister"]) ? $_SESSION["userRegister"] : null;
+            $Pass_Register = isset($_SESSION["passRegister"]) ? $_SESSION["passRegister"] : null;
+        }
+
+        if (empty($Usuario) or empty($Contraseña)) {
+            echo 'Rellene completo el formulario';
+        } else {
+
+            try {
+                $conexion = new PDO("mysql: host=localhost; dbname=focaapp", 'root', '');
+                echo "Conexión OK";
+            } catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+
+
+            $statement = $conexion->prepare("SELECT * FROM `userapp` WHERE Usuario = :user AND Contraseña = :pass");
+
+            $statement->execute(array(':correo' => $correo , ':pass' => $Contraseña1));
+
+            $result = $statement->fetch();
+
+            if ($result) {
+                echo "true";
+                $_SESSION["userRegister"] = $Usuario;
+                $_SESSION["PassRegister"] = $Contraseña;
+
+                header("Location: user.php");
+            }
+        }
+
+        ?>
+
     </div>
-
-
-
-
 
 </body>
 
