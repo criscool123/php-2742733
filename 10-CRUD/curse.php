@@ -148,7 +148,7 @@
 
 
 
-<body background="./top-view-different-paper-sheets (1) (1).jpg " alt>
+<body background="./top-view-different-paper-sheets (1) (1) (1).jpg" alt>
 
     <div class="container">
         <div class="row justify-content-between">

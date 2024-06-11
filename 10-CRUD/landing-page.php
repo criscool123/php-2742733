@@ -14,7 +14,7 @@
     <style>
      
      body{
-        background-image: url(./top-view-different-paper-sheets.jpg);
+        background-image: url(./formas-papel-psicodelico-espacio-copia_23-2149378308\ \(1\).jpg);
 
      }
 
@@ -72,7 +72,7 @@
 
 </head>
 
-<body background="./top-view-different-paper-sheets.jpg " alt>
+<body background="./formas-papel-psicodelico-espacio-copia_23-2149378308 (1).jpg" alt>
 
     <div class="container-md justify-content-center">
 
