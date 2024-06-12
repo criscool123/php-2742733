@@ -2,23 +2,10 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "Datos enviados";
+  echo "Curso A gregado";
+} 
 
-    $correo = $_POST["correo"];
-    $Contraseña1 = $_POST["Contraseña1"];
-    $telefono = $_POST["Telefono"];
-    $Nombre = $_POST["Nombre"];
-
-    if (empty($correo) or empty($Contraseña1) or empty($telefono) or empty($Nombre)) {
-        echo "Por Favor Regístrese";
-    } else {
-
-        /* $_SESSION["userRegister"] = $Usuario;
-    $_SESSION["PassRegister"] = $Contraseña;
-    $_SESSION["PassRegister"] = $Contraseña;
-    $_SESSION["nombreRegister"] = $Nombre;
-    header('Location: index.php'); */
-
+require("conexion.php");
         try {
             $conexion = new PDO("mysql: host=localhost; dbname=focaapp", 'root', '');
             echo "Conexion Ok";
@@ -26,12 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $e->getMessage();
         }
 
-        $statement = $conexion->prepare("INSERT INTO `userapp`(`ID`, `correo`, `Contraseña`, `nombre`) VALUES (NULL,:correo,:pass,:user)");
+        $statement = $conexion->prepare("INSERT INTO `cursos`(`ID`, `correo`, `Contraseña`, `nombre`) VALUES (NULL,:correo,:pass,:user)");
 
-        $statement->execute(array(':correo' => $correo, ':pass' => $Contraseña1, ":user" => $Nombre));
-    }
-}
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -114,30 +98,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <form class="row-4 col-8">
+        <form action="agregar_curso.php" method="POST">
             <div class="col-md-6">
                 <label for="validationDefault01" class="form-label">Estudiantes</label>
-                <input type="text" class="form-control" id="validationDefault01" value="" required>
+                <input type="text" name="estudiantes" id="estudiantes" value="" required>
             </div>
 
             <div class="row-4 col-6">
                 <label for="validationDefault02" class="form-label">Imagen</label>
                 <div class="input-group">
 
-                    <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" value="" required>
+                    <input type="text" name="imagen" id="imagen" value="" required>
                 </div>
             </div>
 
 
             <div class="col-md-6">
                 <label for="validationDefaultUsername" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" id="validationDefault01" value=""required>
+                <input type="text" name="descripcion" id="descripcion" value=""required>
             </div>
 
 
             <div class="col-md-6">
                 <label for="validationDefault03" class="form-label">Cursos</label>
-                <input type="text" class="form-control" id="validationDefault03" value="" required>
+                <input type="text" name="cursos" id="cursos" value="" required>
             </div>
 
 
@@ -189,44 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </tbody>
         </table>
-
-        <!--  <h1>Registrate</h1>
-
-
-
-        <form action="registro.php" method="POST">
-
-            <label for="Nombre"></label>
-            <input type="text" placeholder="Nombre" name="Nombre">
-            <br>
-
-            <label for="Usuario"></label>
-            <input type="email" placeholder="Usuario" name="correo">
-            <br>
-
-            <label for="Telefono"></label>
-            <input type="text" placeholder="Telefono" name="telefono">
-            <br>
-
-            <label for="Contraseña"></label>
-            <input type="text" placeholder="Contraseña" name="Contraseña1">
-            <br>
-
-            <button class="enviar" type="submit" value="submit">Registrase</button>
-
-
-        </form> -->
-
-        <?php if (isset($_SESSION["userRegister"])) :  ?>
-
-
-
-            <p> <?php echo $_SESSION["nombreRegister"] . "- " . $_SESSION["userRegister"] . " - " . $_SESSION["PassRegister"]; ?> </p>
-        <?php endif ?>
-
-
-
-
 
 
     </div>
