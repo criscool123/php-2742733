@@ -1,3 +1,43 @@
+<!-- <?php
+require("conexion.php");
+?>
+
+<?php
+if (isset($_GET["id"])) {
+    $id = $_GET["ID"];
+    $statement = $conexion->prepare("SELECT * FROM cursos WHERE ID = '$id' ");
+    $statement->execute();
+    $result = $statement->fetchAll();
+} else {
+    header("Location: landing-page.php");
+}
+?>
+ -->
+
+<?php
+require("conexion.php");
+
+if (isset($_GET["id"])) {
+    $id = $_GET["id"]; // Cambiado a minúsculas
+    $statement = $conexion->prepare("SELECT * FROM cursos WHERE ID = ?");
+    $statement->execute([$id]);
+    $result = $statement->fetch(PDO::FETCH_ASSOC); // Usar fetch para obtener una sola fila como arreglo asociativo
+    if (!$result) {
+        // Manejo cuando no se encuentra el curso con el ID proporcionado
+        header("Location: landing-page.php");
+        exit; // Importante salir del script después de redirigir
+    }
+} else {
+    header("Location: landing-page.php");
+    exit; // Salir del script si no hay ID válido proporcionado
+}
+?>
+
+
+<?php
+require("header.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +151,7 @@
             justify-content: end;
             align-items: end;
             text-align: end;
-          
+
         }
 
         .titul {
@@ -146,8 +186,6 @@
 
 </head>
 
-
-
 <body background="./top-view-different-paper-sheets (1) (1) (1).jpg" alt>
 
     <div class="container">
@@ -159,28 +197,25 @@
                     <div class="cuadro-0 row md-2 justify-content-start">
                         <div class="cuadro-1 row gy-1 justify-content-start">
                             <section class="col-6 justify-content-start">
-                                <h1 class="col-8 animate__animated animate__bounce">Cursos de Ingles</h1>
+                                <h1 class="col-8 animate__animated animate__bounce"><?php echo $result["curso"] ?></h1>
                             </section>
 
                             <section class="image-container d-flex justify-content-end align-items-end">
                                 <div class="image-2-md">
                                     <section class="col-1 align-items-end">
-                                        <img class="img-ingles" src="./Noticias.jpg" alt="">
+                                        <img class="img-ingles" src="<?php echo $result["imagen"] ?>" alt="">
                                     </section>
                                 </div>
                             </section>
-
 
 
                         </div>
 
                         <div class="cuadro-2 row gy-2">
                             <div class="dos col-6 justify-content-start">
-                                <p class="info">Mas de 500 Cupos para inscribirte a una de las carreras que te ofrece las Universidades de Antioquia y con recursos para que puedas aprender</p>
+                                <p class="info"><!-- Mas de 500 Cupos para inscribirte a una de las carreras que te ofrece las
+                                     Universidades de Antioquia y con recursos para que puedas aprender --> <?php echo $result["descripcion"] ?></p>
                             </div>
-
-
-
 
 
                         </div>
@@ -194,9 +229,6 @@
 
 
 
-
-
-
                             </section>
 
                             <section class="info-3 col-3">
@@ -207,14 +239,7 @@
                             </section>
 
 
-
-
-
-
-
                         </div>
-
-
 
                         <div class="cuadro-4 row lg-2 justify-content-start">
 
@@ -224,25 +249,19 @@
                             </section>
                         </div>
 
-
-
-
                     </div>
-
-
-
 
                 </div>
 
-
-
-
-
             </div>
 
-
         </div>
+
     </div>
+
+    <?php
+    require("footer.php");
+    ?>
 
 </body>
 
