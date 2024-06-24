@@ -117,17 +117,17 @@ require("header.php");
         </div>
     </div>
 
-    <form action="agregar_curso.php" method="POST">
+    <form action="agregar_curso.php" method="POST" enctype="multipart/form-data">
         <div class="col-md-6">
             <label for="validationDefault01" class="form-label">Estudiantes</label>
             <input type="text" name="estudiantes" id="estudiantes" value="" required>
         </div>
 
-        <div class="row-4 col-6">
+        <div class=" col-6">
             <label for="validationDefault02" class="form-label">Imagen</label>
             <div class="input-group">
 
-                <input type="text" name="imagen" id="imagen" value="" required>
+                <input type="file" name="imagen" id="imagen" value="" required>
             </div>
         </div>
 
@@ -148,6 +148,10 @@ require("header.php");
             <button class="btn btn-primary align-items-center" type="submit">Aplicarse</button>
         </div>
     </form>
+
+
+
+
 
     <br>
 
@@ -177,7 +181,7 @@ require("header.php");
                 <tr>
                     <th scope="row"> <?php echo $item["ID"] ?></th>
                     <td><?php echo $item["estudiantes"] ?></td>
-                    <td><?php echo $item["imagen"] ?></td>
+                    <td><img src="<?php echo $item["imagen"] ?>" width="100" alt=""></td>
                     <td><?php echo $item["descripcion"] ?></td>
                     <td><?php echo $item["curso"] ?></td>
                     <td class="d-flex gap-4">

@@ -1,3 +1,10 @@
+<?php
+require("conexion.php");
+require("header.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +19,10 @@
 
 
     <style>
-     
-     body{
-        background-image: url(./formas-papel-psicodelico-espacio-copia_23-2149378308\ \(1\).jpg);
+        body {
+            background-image: url(./formas-papel-psicodelico-espacio-copia_23-2149378308\ \(1\).jpg);
 
-     }
+        }
 
         .cuadro-1 {
             height: 8rem;
@@ -177,6 +183,8 @@
             </div>
         </div>
     </div>
+
+    <?php require("footer.php"); ?>
 
 </body>
 
