@@ -19,8 +19,8 @@ require("header.php");
 
 
 ?>
-<!-- 
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,10 +41,10 @@ require("header.php");
 
 
 
-<body background="./formas-papel-psicodelico-espacio-copia_23-2149378308 (1).jpg" alt> -->
+<body background="" alt> -->
 <style>
     .container {
-        background-color: whitesmoke;
+        background-color: blue;
         height: 40rem;
         width: 100rem;
         margin: 2rem;

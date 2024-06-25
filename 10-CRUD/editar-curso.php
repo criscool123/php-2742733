@@ -18,16 +18,45 @@ if (isset($_GET["id"])) {
 
 
 if (isset($_POST["actualizar_curso"])) {
-    echo "h1 formulario de la actualizacion enviados";
+    echo " formulario de la actualizacion enviados";
     $ID = $_GET["id"];
     $tituloActualizado = $_POST["titulo_curso"];
     $describicionActualizada = $_POST["descripcion"];
     $estudiantesActualizado = $_POST["estudiantes"];
-    $statement = $conexion->prepare("UPDATE `cursos` SET `curso`= ? ,`descripcion`= ? ,`estudiantes`= ? WHERE id = ?");
 
-    $statement->execute(array( $tituloActualizado ,  $describicionActualizada,  $estudiantesActualizado, $ID));
-    header("Location: user.php");
+
+    $imagen = $_FILES["imagen"]["tmp_name"];
+    $nombreImagen = $_FILES["imagen"]["name"];
+    $tipoImagen = pathinfo($nombreImagen, PATHINFO_EXTENSION);
+    $sizeImagen = $_FILES["imagen"]["size"];
+    $directorio = "images/";
+
+    if ($tipoImagen == "jpg" or $tipoImagen == "jpeg" or $tipoImagen == "png") {
+
+        $ruta = $directorio . $ID . "." . $tipoImagen;
+
+        $statement = $conexion->prepare("UPDATE `cursos` SET  imagen= ?, curso= ?, descripcion= ? ,estudiantes= ? WHERE ID = ?");
+
+
+        $statement->execute(array($ruta, $tituloActualizado, $describicionActualizada, $estudiantesActualizado, $ID));
+
+
+        if (move_uploaded_file($imagen, $ruta)) {
+            $_SESSION["mensaje"] = "curso actualizado exitosamente";
+            $_SESSION["color"] = "success";
+
+            header("Location: user.php");
+        }
+
+        header("Location: user.php");
+    } else {
+        $_SESSION["mensaje"] = "Formato no admitido";
+        $_SESSION["color"] = "danger";
+
+        header("Location: user.php");
+    }
 }
+
 ?>
 
 <?php
@@ -36,9 +65,12 @@ require("header.php");
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="editar-curso.php?id=<?php echo $ID ?>"  method="POST">
+            <form action="editar-curso.php?id=<?php echo $ID ?>" method="POST" enctype="multipart/form-data">
                 <label for="titulo">Titulo del curso</label>
                 <input class="form-control" type="text" name="titulo_curso" value="<?php echo $titulo ?> ">
+
+                <label for="imagen">imagen del curso</label>
+                <input class="form-control" type="file" name="imagen" value="<?php echo $imagen ?> ">
 
                 <label for="descripcion">Descripcion</label>
                 <input class="form-control" type="text" name="descripcion" value="<?php echo $descripcion ?> ">

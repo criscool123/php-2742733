@@ -52,8 +52,7 @@ require("header.php");
 
 
     <style>
-        body {}
-
+      
         .cuadro-1 {
             height: 8rem;
             margin-top: 40px;
