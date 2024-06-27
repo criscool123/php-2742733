@@ -48,6 +48,7 @@ require("header.php");
         height: 40rem;
         width: 100rem;
         margin: 2rem;
+        margin-left: 7rem;
         border-radius: 1rem;
         justify-content: center;
         display: flex;
@@ -78,9 +79,10 @@ require("header.php");
     }
 
     .cuadro-2 {
-        background-color: gray;
+        background-color: #a2afc5;
         height: 5rem;
         border-radius: 2rem;
+        margin-bottom: 8rem;
     }
 
     .usua {
@@ -89,6 +91,26 @@ require("header.php");
         align-items: center;
         justify-content: center;
         color: white;
+    }
+
+    .es {
+        color: purple;
+        font-size: 25px;
+    }
+
+    .im {
+        color: purple;
+        font-size: 25px;
+    }
+
+    .de{
+        color: purple;
+        font-size: 25px;
+    }
+
+    .cu{
+        color: purple;
+        font-size: 25px;
     }
 </style>
 
@@ -119,12 +141,16 @@ require("header.php");
 
     <form action="agregar_curso.php" method="POST" enctype="multipart/form-data">
         <div class="col-md-6">
-            <label for="validationDefault01" class="form-label">Estudiantes</label>
+            <label for="validationDefault01" class="form-label">
+                <h1 class="es">Estudiantes</h1>
+            </label>
             <input type="text" name="estudiantes" id="estudiantes" value="" required>
         </div>
 
         <div class=" col-6">
-            <label for="validationDefault02" class="form-label">Imagen</label>
+            <label for="validationDefault02" class="form-label">
+                <h1 class="im">Imagen</h1>
+            </label>
             <div class="input-group">
 
                 <input type="file" name="imagen" id="imagen" value="" required>
@@ -133,13 +159,17 @@ require("header.php");
 
 
         <div class="col-md-6">
-            <label for="validationDefaultUsername" class="form-label">Descripcion</label>
+            <label for="validationDefaultUsername" class="form-label">
+                <h1 class="de">Descripcion</h1>
+            </label>
             <input type="text" name="descripcion" id="descripcion" value="" required>
         </div>
 
 
         <div class="col-md-6">
-            <label for="validationDefault03" class="form-label">Cursos</label>
+            <label for="validationDefault03" class="form-label">
+                <h1 class="cu">Cursos</h1>
+            </label>
             <input type="text" name="cursos" id="cursos" value="" required>
         </div>
 
